@@ -1,12 +1,20 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions:{
+    saveAllAttempts: true,
+  },
+
   defaultCommandTimeout: 10000,
   retries: 3,
   e2e: {
     video: true,
     screenshotOnRunFailure: true,
     setupNodeEvents(on, config) {
+      // setup mochawesome reporter
+      require('cypress-mochawesome-reporter/plugin')(on)
+
       // implement node event listeners here
       const envName = config.env['environment']; 
       const envType = config.env[envName] || config.env.dev;
@@ -21,8 +29,7 @@ module.exports = defineConfig({
       config.env.apiUrl = envType.apiUrl;
 
       if (envName === "qa") {
-        config.defaultCommandTimeout = 15000; // Aumenta el timeout en QA
-        config.video = false; // Desactiva video en QA
+        config.defaultCommandTimeout = 15000; 
       }
 
       return config;

@@ -1,11 +1,11 @@
 {
   "devDependencies": {
-    "cypress": "^13.17.0"
+    "cypress": "^13.17.0",
+    "cypress-mochawesome-reporter": "^3.8.2"
   },
   "scripts": {
     "cypress:run:local:chrome": "cypress run --env environment=local --browser chrome",
     "cypress:run:local:firefox": "cypress run --env environment=local --browser firefox",
-
     "cypress:run:dev:chrome": "cypress run --env environment=dev --browser chrome",
     "cypress:run:dev:firefox": "cypress run --env environment=dev --browser firefox",
     "cypress:run:qa:chrome": "cypress run --env environment=qa --browser chrome",
@@ -14,8 +14,6 @@
     "cypress:run:stag:firefox": "cypress run --env environment=stag --browser firefox",
     "cypress:run:prod:chrome": "cypress run --env environment=prod --browser chrome",
     "cypress:run:prod:firefox": "cypress run --env environment=prod --browser firefox",
-
     "cypress:run:container": "docker run --rm -v $PWD:/e2e -w /e2e cypress/included:13.17.0 cypress run --env environment=qa --browser chrome"
   }
-
 }
