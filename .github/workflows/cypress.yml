@@ -1,0 +1,21 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests
+        run: npm run cypress:run:headless:qa

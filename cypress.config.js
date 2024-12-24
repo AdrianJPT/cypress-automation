@@ -34,7 +34,7 @@ module.exports = defineConfig({
         browser: 'chrome',
       },
       qa:{
-        baseUrl: "https://qa.magento.softwaretestingboard.com",
+        baseUrl: "https://magento.softwaretestingboard.com",
         apiUrl: "",
         browser: 'chrome',
 
