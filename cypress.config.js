@@ -28,6 +28,9 @@ module.exports = defineConfig({
       return config;
     },
     env: {
+      local: {
+        baseUrl: "http://localhost:1010/path", // Localhost
+      },
       dev:{
         baseUrl: "https://dev.magento.softwaretestingboard.com",
         apiUrl: "",
