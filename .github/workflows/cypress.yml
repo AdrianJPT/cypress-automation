@@ -17,5 +17,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress tests
-        run: npm run cypress:run:headless:qa
+      - name: Run Cypress tests (local - chrome)
+        run: npm run cypress:run:local:chrome
