@@ -1,4 +1,2 @@
-# idelsoft-demo-automation
-idelsoft-demo-automation
-
-initial commit 
+# idelsoft-automation-cypress
+idelsoft-automation-cypress
