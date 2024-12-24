@@ -20,9 +20,19 @@ jobs:
           chmod +x ./node_modules/.bin/cypress 
 
       - name: Install Cypress binary
-        run: npx cypress install  # Ensures Cypress binary is installed
-
-
+        run: npx cypress install  
 
       - name: Run Cypress tests (stag - chrome)
         run: npm run cypress:run:stag:chrome
+
+        # Save the screenshots in case tests are failed
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
