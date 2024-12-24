@@ -1,0 +1,21 @@
+{
+  "validUser": {
+    "firstName": "Adrian",
+    "lastName": "Pablo",
+    "email": "adrian@gmail.com",
+    "password": "@drianPablo",
+    "address": "whatever address",
+    "city": "New York",
+    "state": "New York",
+    "zipCode": "10001",
+    "country": "United States",
+    "phoneNumber": "1234567890"
+  },
+  "invalidUser": {
+    "email": "invalid-email@invalidmail.com",
+    "password": "invalid-password"
+  },
+  "existingUser": {
+    "email": "adrian@gmail.com"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "cypress": "^13.17.0"
+  },
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run:local:dev": "cypress run --env environment=dev --browser chrome",
+    "cypress:run:local:qa": "cypress run --env environment=qa --browser firefox",
+    "cypress:run:local:prod": "cypress run --env environment=prod --browser chrome",
+    "cypress:run:docker:dev": "docker run -v $PWD:/e2e -w /e2e -e CYPRESS_environment=dev -e CYPRESS_browser=chrome cypress/included:12.14.0",
+    "cypress:run:docker:qa": "docker run -v $PWD:/e2e -w /e2e -e CYPRESS_environment=qa -e CYPRESS_browser=firefox cypress/included:12.14.0",
+    "cypress:run:docker:prod": "docker run -v $PWD:/e2e -w /e2e -e CYPRESS_environment=prod -e CYPRESS_browser=chrome cypress/included:12.14.0"
+  }
+}
