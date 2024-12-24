@@ -42,6 +42,12 @@ module.exports = defineConfig({
         browser: 'chrome',
 
       },
+      stag:{
+        baseUrl: "https://magento.softwaretestingboard.com",
+        apiUrl: "",
+        browser: 'chrome',
+
+      },
       prod:{
         baseUrl: "https://magento.softwaretestingboard.com",
         apiUrl: "",

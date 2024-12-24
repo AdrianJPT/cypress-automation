@@ -10,6 +10,8 @@
     "cypress:run:dev:firefox": "cypress run --env environment=dev --browser firefox",
     "cypress:run:qa:chrome": "cypress run --env environment=qa --browser chrome",
     "cypress:run:qa:firefox": "cypress run --env environment=qa --browser firefox",
+    "cypress:run:stag:chrome": "cypress run --env environment=stag --browser chrome",
+    "cypress:run:stag:firefox": "cypress run --env environment=stag --browser firefox",
     "cypress:run:prod:chrome": "cypress run --env environment=prod --browser chrome",
     "cypress:run:prod:firefox": "cypress run --env environment=prod --browser firefox",
 
