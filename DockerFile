@@ -1,0 +1,10 @@
+# filepath: /Dockerfile
+FROM cypress/base:10
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm install
+
+COPY . .
+

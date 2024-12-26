@@ -1,0 +1,8 @@
+version: '3'
+services:
+  cypress:
+    build: .
+    volumes:
+      - .:/app
+      - ./cypress/reports:/app/cypress/reports
+    command: ["npm", "run", "cypress:run:qa:chrome"]

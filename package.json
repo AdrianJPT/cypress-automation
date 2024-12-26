@@ -14,6 +14,7 @@
     "cypress:run:stag:firefox": "cypress run --env environment=stag --browser firefox",
     "cypress:run:prod:chrome": "cypress run --env environment=prod --browser chrome",
     "cypress:run:prod:firefox": "cypress run --env environment=prod --browser firefox",
-    "cypress:run:container": "docker run --rm -v $PWD:/e2e -w /e2e cypress/included:13.17.0 cypress run --env environment=qa --browser chrome"
+    "cypress:run:container": "docker-compose up --build",
+    "cypress:report": "npx mochawesome-merge cypress/reports/*.json > cypress/reports/report.json && npx mochawesome-report-generator cypress/reports/report.json"
   }
 }
