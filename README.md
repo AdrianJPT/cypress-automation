@@ -2,7 +2,6 @@
 A strong and robust Cypress automation framework designed to test the UI and API levels of the e-commerce platform Magento. This framework ensures the reliability and functionality of the platform through comprehensive automated testing
 
 ##  Features
-
 - Page Object Model 
 - API mock responses 
 - Test data management using JSON files
@@ -15,13 +14,17 @@ A strong and robust Cypress automation framework designed to test the UI and API
 - Automated tests (both API and UI) 
 
 ## 1 ) Quick Start
-Set up the project
+### Pre-Requisiteies
+```bash
+  node  v22.12.0
+  npm  v10.9.0
+```
+### Set up the project
 ```bash
   git clone https://github.com/AdrianJPT/idelsoft-automation-cypress.git
   cd idelsoft-automation-cypress
 ```
-    
-Install dependecies and cypress
+### Install dependecies and cypress
 ```bash
   npm install
   npx cypress install
