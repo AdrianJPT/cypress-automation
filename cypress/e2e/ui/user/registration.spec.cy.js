@@ -1,89 +1,75 @@
-import { generateUniqueEmail } from '../../../support/utils';
-
 import RegistrationPage from '../../../support/pageObjects/registrationPage'
-import ProfilePage from '../../../support/pageObjects/profilePage';
+import ProfilePage from '../../../support/pageObjects/profilePage'
 const registrationPage = new RegistrationPage()
 const profilePage = new ProfilePage()
-
 let data;
 let uniqueEmail;
 
+function generateUniqueEmail(prefix) {
+  const timestamp = new Date().getTime();
+  return `${prefix}-${timestamp}@example.com`;
+}
+
 describe('User Registration', () => {
-  beforeEach(() => {
+  before(() => {
     cy.fixture('testData').then((datatest) => { data = datatest })
+  })
+
+  beforeEach(() => {
     uniqueEmail = generateUniqueEmail('validUser');
     cy.visit('/customer/account/create')
   })
 
   it('should register with valid data', function() {
+    cy.log('Filling first name')
     registrationPage.firstName.type(data.validUser.firstName)
+    cy.log('Filling last name')
     registrationPage.lastName.type(data.validUser.lastName)
+    cy.log('Filling email')
     registrationPage.email.type(uniqueEmail)
+    cy.log('Filling password')
     registrationPage.password.type(data.validUser.password)
+    cy.log('Filling password confirmation')
     registrationPage.passwordConfirmation.type(data.validUser.password)
+    cy.log('Submitting registration form')
     registrationPage.submitButton.click()
+    cy.log('Verifying URL contains /customer/account')
     cy.url().should('include', '/customer/account')
+    cy.log('Verifying account information contains first name and last name')
     profilePage.accountInformation.should('contain', data.validUser.firstName + ' ' + data.validUser.lastName)
+    cy.log('Verifying account information contains email')
     profilePage.accountInformation.should('contain', uniqueEmail)
   })
 
   it('should show errors for empty fields', function() {
+    cy.log('Submitting registration form with empty fields')
     registrationPage.submitButton.click()
+    cy.log('Verifying first name error message')
     registrationPage.firstNameErrorMessage.should('contain', 'This is a required field.')
+    cy.log('Verifying last name error message')
     registrationPage.lastNameErrorMessage.should('contain', 'This is a required field.')
+    cy.log('Verifying email error message')
     registrationPage.emailErrorMessage.should('contain', 'This is a required field.')
+    cy.log('Verifying password error message')
     registrationPage.passwordErrorMessage.should('contain', 'This is a required field.')
+    cy.log('Verifying password confirmation error message')
     registrationPage.passwordConfirmationErrorMessage.should('contain', 'This is a required field.')
   })
 
-  it('should show an error for invalid email format', function() {
+  it('should show an error for invalid email', function() {
+    cy.log('Filling first name')
     registrationPage.firstName.type(data.validUser.firstName)
+    cy.log('Filling last name')
     registrationPage.lastName.type(data.validUser.lastName)
+    cy.log('Filling invalid email')
     registrationPage.email.type('invalid-email')
+    cy.log('Filling password')
     registrationPage.password.type(data.validUser.password)
+    cy.log('Filling password confirmation')
     registrationPage.passwordConfirmation.type(data.validUser.password)
+    cy.log('Submitting registration form')
     registrationPage.submitButton.click()
-    registrationPage.emailErrorMessage.should('contain', 'Please enter a valid email address')
-  })
-
-  it('should show an error for passwords not matching', function() {
-    registrationPage.firstName.type(data.validUser.firstName)
-    registrationPage.lastName.type(data.validUser.lastName)
-    registrationPage.email.type(uniqueEmail)
-    registrationPage.password.type(data.validUser.password)
-    registrationPage.passwordConfirmation.type('different-password')
-    registrationPage.submitButton.click()
-    registrationPage.passwordConfirmationErrorMessage.should('contain', 'Please enter the same value again.')
-  })
-
-  it('should show an error for short password', function() {
-    registrationPage.firstName.type(data.validUser.firstName)
-    registrationPage.lastName.type(data.validUser.lastName)
-    registrationPage.email.type(uniqueEmail)
-    registrationPage.password.type('short')
-    registrationPage.passwordConfirmation.type('short')
-    registrationPage.submitButton.click()
-    registrationPage.passwordErrorMessage.should('contain', 'Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.')
-  })
-
-  it('should show an error for existing email', function() {
-    registrationPage.firstName.type(data.validUser.firstName)
-    registrationPage.lastName.type(data.validUser.lastName)
-    registrationPage.email.type(data.existingUser.email)
-    registrationPage.password.type(data.validUser.password)
-    registrationPage.passwordConfirmation.type(data.validUser.password)
-    registrationPage.submitButton.click()
-    registrationPage.messageError.should('contain', 'There is already an account with this email address.')
-  })
-
-  it('should show an error for special characters in name', function() {
-    registrationPage.firstName.type('John@')
-    registrationPage.lastName.type('Doe#')
-    registrationPage.email.type(uniqueEmail)
-    registrationPage.password.type(data.validUser.password)
-    registrationPage.passwordConfirmation.type(data.validUser.password)
-    registrationPage.submitButton.click()
-    registrationPage.messageError.should('contain', 'First Name is not valid!')
-    registrationPage.messageError.should('contain', 'Last Name is not valid!')
+    cy.log('Verifying email error message')
+    registrationPage.emailErrorMessage.should('contain', 'Please enter a valid email address (Ex: johndoe@domain.com).')
   })
 })

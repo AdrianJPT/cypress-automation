@@ -65,6 +65,9 @@ class CartPage {
     get cartTotalSumnary(){
         return cy.get('#cart-totals')
     }
+    get popupMessage(){
+      return cy.get('#modal-content-26 > div')
+    }
   }
   
   export default CartPage
