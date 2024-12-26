@@ -1,8 +1,7 @@
-version: '3'
 services:
-  cypress:
-    build: .
-    volumes:
-      - .:/app
-      - ./cypress/reports:/app/cypress/reports
-    command: ["npm", "run", "cypress:run:qa:chrome"]
+  cypress-chrome:
+   image: cypress/included:13.17.0
+   command: "--env environment=qa --browser chrome"
+   working_dir: /cypress
+   volumes:
+     - ./:/cypress
